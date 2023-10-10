@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Vetores</title>
+
+    <link rel="stylesheet" href="./Projeto/src/css/arrumacao.css">
+    <link rel="stylesheet" href="./Projeto/src/css/arrumacao.css">
+
+</head>
+<body>
+
+    <main class="titulo">
+    <h1>Calculadora de Vetores</h1>
+    </main>
+    
+    <p>Insira as coordenadas dos vetores:</p>
+
+    <label for="vector1X">Vetor 1 - Componente X:</label>
+    <input type="number" id="vector1X">
+    <label for="vector1Y">Vetor 1 - Componente Y:</label>
+    <input type="number" id="vector1Y">
+    <label for="vector1Z">Vetor 1 - Componente Z:</label>
+    <input type="number" id="vector1Z">
+
+    <br>
+
+    <label for="vector2X">Vetor 2 - Componente X:</label>
+    <input type="number" id="vector2X">
+    <label for="vector2Y">Vetor 2 - Componente Y:</label>
+    <input type="number" id="vector2Y">
+    <label for="vector2Z">Vetor 2 - Componente Z:</label>
+    <input type="number" id="vector2Z">
+
+    <br>
+
+    <label for="vector3X">Vetor 3 - Componente X:</label>
+    <input type="number" id="vector3X">
+    <label for="vector3Y">Vetor 3 - Componente Y:</label>
+    <input type="number" id="vector3Y">
+    <label for="vector3Z">Vetor 3 - Componente Z:</label>
+    <input type="number" id="vector3Z">
+
+    <br>
+
+    <button onclick="calcularProdutoEscalar()">Calcular Produto Escalar</button>
+    <button onclick="calcularProdutoVetorial()">Calcular Produto Vetorial</button>
+    <button onclick="calcularProdutoMisto()">Calcular Produto Misto</button>
+
+    <p>Resultado:</p>
+    <p id="resultado"></p>
+ <main class=" descrição">
+    <p> Uma calculadora prática, para realizar cálculos de produtos escalares, vetoriais e mistos, com rapidez.</p>
+
+    <p> Basta preencher corretamente os espaços com os determinados números para realizar a operação.</p>
+    </main>
+
+    <script>
+        function calcularProdutoEscalar() {
+            const vector1X = parseFloat(document.getElementById('vector1X').value);
+            const vector1Y = parseFloat(document.getElementById('vector1Y').value);
+            const vector1Z = parseFloat(document.getElementById('vector1Z').value);
+            const vector2X = parseFloat(document.getElementById('vector2X').value);
+            const vector2Y = parseFloat(document.getElementById('vector2Y').value);
+            const vector2Z = parseFloat(document.getElementById('vector2Z').value);
+
+            const produtoEscalar = (vector1X * vector2X) + (vector1Y * vector2Y) + (vector1Z * vector2Z);
+
+            document.getElementById('resultado').textContent = `Produto Escalar: ${produtoEscalar}`;
+        }
+
+        function calcularProdutoVetorial() {
+            const vector1X = parseFloat(document.getElementById('vector1X').value);
+            const vector1Y = parseFloat(document.getElementById('vector1Y').value);
+            const vector1Z = parseFloat(document.getElementById('vector1Z').value);
+            const vector2X = parseFloat(document.getElementById('vector2X').value);
+            const vector2Y = parseFloat(document.getElementById('vector2Y').value);
+            const vector2Z = parseFloat(document.getElementById('vector2Z').value);
+
+            const resultadoX = (vector1Y * vector2Z) - (vector1Z * vector2Y);
+            const resultadoY = (vector1Z * vector2X) - (vector1X * vector2Z);
+            const resultadoZ = (vector1X * vector2Y) - (vector1Y * vector2X);
+
+            const resultado = `(${resultadoX}, ${resultadoY}, ${resultadoZ})`;
+
+            document.getElementById('resultado').textContent = `Produto Vetorial: ${resultado}`;
+        }
+        
+         
+        function calcularProdutoMisto() {
+            const vector1X = parseFloat(document.getElementById('vector1X').value);
+            const vector1Y = parseFloat(document.getElementById('vector1Y').value);
+            const vector1Z = parseFloat(document.getElementById('vector1Z').value);
+            const vector2X = parseFloat(document.getElementById('vector2X').value);
+            const vector2Y = parseFloat(document.getElementById('vector2Y').value);
+            const vector2Z = parseFloat(document.getElementById('vector2Z').value);
+            const vector3X = parseFloat(document.getElementById('vector3X').value);
+            const vector3Y = parseFloat(document.getElementById('vector3Y').value);
+            const vector3Z = parseFloat(document.getElementById('vector3Z').value);
+
+            // Calcula o produto vetorial entre os vetores 1 e 2
+            const produtoVetorial = [
+                (vector1Y * vector2Z) - (vector1Z * vector2Y),
+                (vector1Z * vector2X) - (vector1X * vector2Z),
+                (vector1X * vector2Y) - (vector1Y * vector2X)
+            ];
+
+            // Calcula o produto misto entre o resultado do produto vetorial e o vetor 3
+            const produtoMisto = (
+                (produtoVetorial[0] * vector3X) +
+                (produtoVetorial[1] * vector3Y) +
+                (produtoVetorial[2] * vector3Z)
+            );
+
+            document.getElementById('resultado').textContent = `Produto Misto: ${produtoMisto}`;
+        }
+
+    </script>
+</body>
+</html>
